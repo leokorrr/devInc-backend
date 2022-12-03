@@ -1,0 +1,11 @@
+-- AlterTable
+ALTER TABLE "ContactInfo" ALTER COLUMN "ulid" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "Project" ALTER COLUMN "ulid" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "Review" ALTER COLUMN "ulid" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "SocialLink" ALTER COLUMN "ulid" SET DATA TYPE TEXT;

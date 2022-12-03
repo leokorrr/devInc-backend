@@ -1,16 +1,20 @@
 import { IsNotEmpty, Matches } from 'class-validator'
-import { URL_REGEX } from 'src/utils/constants'
+import { ULID_REGEX, URL_REGEX } from 'src/utils/constants'
 
 export class CreateReviewDto {
+  @IsNotEmpty()
+  @Matches(ULID_REGEX)
+  ulid: string
+
   @IsNotEmpty()
   text: string
 
   @IsNotEmpty()
   author: string
 
-  @Matches(URL_REGEX)
+  // @Matches(URL_REGEX)
   link: string
 
-  @Matches(URL_REGEX)
+  // @Matches(URL_REGEX)
   projectLink: string
 }

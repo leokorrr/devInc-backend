@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Prisma, SocialLink } from '@prisma/client'
 import { PrismaService } from 'src/prisma.service'
-import { CreateSocialLinkDto } from 'src/social-links/dto/CreateSocialLinkDto'
-import { UpdateSocialLinkDto } from 'src/social-links/dto/UpdateSocialLinkDto'
 
 @Injectable()
 export class SocialLinksService {
@@ -18,11 +16,15 @@ export class SocialLinksService {
     return this.prisma.socialLink.create({ data })
   }
 
-  async updateSocialLink(
-    socialLinkId: string,
-    updateSocialLinkDto: UpdateSocialLinkDto,
-  ) {
-    console.log('updateSocialLink')
+  async updateSocialLink(params: {
+    where: Prisma.SocialLinkWhereUniqueInput
+    data: Prisma.SocialLinkUpdateInput
+  }): Promise<SocialLink> {
+    const { data, where } = params
+    return this.prisma.socialLink.update({
+      data,
+      where,
+    })
   }
 
   async deleteSocialLink(

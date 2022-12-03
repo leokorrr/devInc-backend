@@ -29,16 +29,21 @@ export class ProjectsController {
   }
 
   // TODO: check if Put right decorator
-  @Put(':project_id')
+  @Put(':id')
   updateProject(
-    @Param('project_id') projectId: string,
+    @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
   ) {
-    return this.projectsService.updateProject(projectId, updateProjectDto)
+    return this.projectsService.updateProject({
+      where: { ulid: id },
+      data: updateProjectDto,
+    })
   }
 
-  @Delete(':project_id')
-  deleteProject(@Param('project_id') projectId: string) {
-    return this.projectsService.deleteProject(projectId)
+  @Delete(':id')
+  deleteProject(@Param('id') id: string) {
+    return this.projectsService.deleteProject({
+      ulid: id,
+    })
   }
 }

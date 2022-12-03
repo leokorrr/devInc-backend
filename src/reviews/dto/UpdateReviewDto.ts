@@ -8,9 +8,9 @@ export class UpdateReviewDto {
   @IsNotEmpty()
   author: string
 
-  @Matches(URL_REGEX)
+  // @Matches(URL_REGEX)
   link: string
 
-  @Matches(URL_REGEX)
+  // @Matches(URL_REGEX)
   projectLink: string
 }

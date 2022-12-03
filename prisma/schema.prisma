@@ -38,7 +38,7 @@ model ContactInfo {
   ulid      String   @unique
   email     String   @unique
   address   String   @unique
-  phone     String   @unique
+  phone     String?  @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

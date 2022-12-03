@@ -29,20 +29,20 @@ export class ContactInfoController {
   }
 
   // TODO: check if Put right decorator
-  @Put(':contact_info__id')
+  @Put(':id')
   @UsePipes(ValidationPipe)
   updateContactInfo(
-    @Param('contact_info_id') contactInfoId: string,
+    @Param('id') id: string,
     @Body() updateContactInfoDto: UpdateContactInfoDto,
   ) {
-    return this.contactInfoService.updateContactInfo(
-      contactInfoId,
-      updateContactInfoDto,
-    )
+    return this.contactInfoService.updateContactInfo({
+      where: { ulid: id },
+      data: updateContactInfoDto,
+    })
   }
 
-  @Delete(':contact_info_id')
-  deleteContactInfo(@Param('contact_info_id') contactInfoId: string) {
-    return this.contactInfoService.deleteContactInfo(contactInfoId)
+  @Delete(':id')
+  deleteContactInfo(@Param('id') id: string) {
+    return this.contactInfoService.deleteContactInfo({ ulid: id })
   }
 }

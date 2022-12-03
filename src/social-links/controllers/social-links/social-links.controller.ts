@@ -25,27 +25,27 @@ export class SocialLinksController {
 
   @Post('')
   @UsePipes(ValidationPipe)
+  // TODO: ULID creation check
   createSocialLink(@Body() createSocialLinkDto: CreateSocialLinkDto) {
     return this.socialLinksService.createSocialLink(createSocialLinkDto)
   }
 
-  // TODO: check if Put right decorator
-  @Put(':social_link_id')
+  @Put(':id')
   @UsePipes(ValidationPipe)
   updateSocialLink(
-    @Param('social_link_id') socialLinkId: string,
+    @Param('id') id: string,
     @Body() updateSocialLinkDto: UpdateSocialLinkDto,
   ) {
-    return this.socialLinksService.updateSocialLink(
-      socialLinkId,
-      updateSocialLinkDto,
-    )
+    return this.socialLinksService.updateSocialLink({
+      where: { ulid: id },
+      data: updateSocialLinkDto,
+    })
   }
 
-  @Delete(':social_link_id')
-  deleteSocialLink(@Param('social_link_id') socialLinkId: string) {
+  @Delete(':id')
+  deleteSocialLink(@Param('id') id: string) {
     return this.socialLinksService.deleteSocialLink({
-      ulid: socialLinkId,
+      ulid: id,
     })
   }
 }

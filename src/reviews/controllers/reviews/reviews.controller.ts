@@ -28,18 +28,20 @@ export class ReviewsController {
     return this.reviewsService.createReview(createReviewDto)
   }
 
-  // TODO: check if Put right decorator
-  @Put('')
+  @Put(':id')
   @UsePipes(ValidationPipe)
   updateReview(
-    @Param('reviews_id') reviewId: string,
-    @Body() updateSocialLinkDto: UpdateReviewDto,
+    @Param('id') id: string,
+    @Body() updateReviewDto: UpdateReviewDto,
   ) {
-    return this.reviewsService.updateReview(reviewId, updateSocialLinkDto)
+    return this.reviewsService.updateReview({
+      where: { ulid: id },
+      data: updateReviewDto,
+    })
   }
 
-  @Delete(':review_id')
-  deleteReview(@Param('reviews_id') reviewId: string) {
-    return this.reviewsService.deleteReview(reviewId)
+  @Delete(':id')
+  deleteReview(@Param('id') id: string) {
+    return this.reviewsService.deleteReview({ ulid: id })
   }
 }

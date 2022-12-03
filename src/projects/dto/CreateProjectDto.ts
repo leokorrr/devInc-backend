@@ -1,7 +1,11 @@
 import { IsNotEmpty, Matches } from 'class-validator'
-import { URL_REGEX } from 'src/utils/constants'
+import { ULID_REGEX, URL_REGEX } from 'src/utils/constants'
 
 export class CreateProjectDto {
+  @IsNotEmpty()
+  @Matches(ULID_REGEX)
+  ulid: string
+
   @IsNotEmpty()
   title: string
 

@@ -1,28 +1,35 @@
 import { Injectable } from '@nestjs/common'
-import { CreateContactInfoDto } from 'src/contact-info/dto/CreateContactInfoDto'
-import { UpdateContactInfoDto } from 'src/contact-info/dto/UpdateContactInfoDto'
+import { ContactInfo, Prisma } from '@prisma/client'
 import { PrismaService } from 'src/prisma.service'
 
 @Injectable()
 export class ContactInfoService {
   constructor(private prisma: PrismaService) {}
 
-  async getContactInfo() {
-    console.log('getContactInfo')
+  async getContactInfo(): Promise<ContactInfo[]> {
+    return this.prisma.contactInfo.findMany()
   }
 
-  async createContactInfo(createContactInfoDto: CreateContactInfoDto) {
-    console.log('createContactInfo')
+  async createContactInfo(
+    data: Prisma.ContactInfoCreateInput,
+  ): Promise<ContactInfo> {
+    return this.prisma.contactInfo.create({ data })
   }
 
-  async updateContactInfo(
-    contactInfoId: string,
-    updateContactInfoDto: UpdateContactInfoDto,
-  ) {
-    console.log('updateContactInfo')
+  async updateContactInfo(params: {
+    where: Prisma.ContactInfoWhereUniqueInput
+    data: Prisma.ContactInfoUpdateInput
+  }): Promise<ContactInfo> {
+    const { data, where } = params
+    return this.prisma.contactInfo.update({
+      data,
+      where,
+    })
   }
 
-  async deleteContactInfo(contactInfoId: string) {
-    console.log('deleteContactInfo')
+  async deleteContactInfo(
+    where: Prisma.ContactInfoWhereUniqueInput,
+  ): Promise<ContactInfo> {
+    return this.prisma.contactInfo.delete({ where })
   }
 }

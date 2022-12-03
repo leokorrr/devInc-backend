@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
 }
 
 // TODO: add .env variables
@@ -13,7 +14,7 @@ datasource db {
 
 model Project {
   id        Int      @id @default(autoincrement())
-  ulid      String
+  ulid      String   @unique
   title     String
   image     String
   link      String
@@ -23,7 +24,7 @@ model Project {
 
 model Review {
   id          Int      @id @default(autoincrement())
-  ulid        String
+  ulid        String   @unique
   text        String
   author      String
   link        String?
@@ -34,7 +35,7 @@ model Review {
 
 model ContactInfo {
   id        Int      @id @default(autoincrement())
-  ulid      String
+  ulid      String   @unique
   email     String   @unique
   address   String   @unique
   phone     String   @unique
@@ -44,7 +45,7 @@ model ContactInfo {
 
 model SocialLink {
   id        Int      @id @default(autoincrement())
-  ulid      String
+  ulid      String   @unique
   link      String   @unique
   title     String   @unique
   imageUrl  String

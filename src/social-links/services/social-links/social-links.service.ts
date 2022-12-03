@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common'
+import { Prisma, SocialLink } from '@prisma/client'
 import { PrismaService } from 'src/prisma.service'
 import { CreateSocialLinkDto } from 'src/social-links/dto/CreateSocialLinkDto'
 import { UpdateSocialLinkDto } from 'src/social-links/dto/UpdateSocialLinkDto'
@@ -7,12 +8,14 @@ import { UpdateSocialLinkDto } from 'src/social-links/dto/UpdateSocialLinkDto'
 export class SocialLinksService {
   constructor(private prisma: PrismaService) {}
 
-  async getSocialLinks() {
-    console.log('getSocialLinks')
+  async getSocialLinks(): Promise<SocialLink[]> {
+    return this.prisma.socialLink.findMany()
   }
 
-  async createSocialLink(createSocialLinkDto: CreateSocialLinkDto) {
-    console.log('createSocialLink')
+  async createSocialLink(
+    data: Prisma.SocialLinkCreateInput,
+  ): Promise<SocialLink> {
+    return this.prisma.socialLink.create({ data })
   }
 
   async updateSocialLink(
@@ -22,7 +25,9 @@ export class SocialLinksService {
     console.log('updateSocialLink')
   }
 
-  async deleteSocialLink(socialLinkId: string) {
-    console.log('deletePost')
+  async deleteSocialLink(
+    where: Prisma.SocialLinkWhereUniqueInput,
+  ): Promise<SocialLink> {
+    return this.prisma.socialLink.delete({ where })
   }
 }

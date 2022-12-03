@@ -44,6 +44,8 @@ export class SocialLinksController {
 
   @Delete(':social_link_id')
   deleteSocialLink(@Param('social_link_id') socialLinkId: string) {
-    return this.socialLinksService.deleteSocialLink(socialLinkId)
+    return this.socialLinksService.deleteSocialLink({
+      ulid: socialLinkId,
+    })
   }
 }

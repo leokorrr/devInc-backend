@@ -12,19 +12,20 @@ import {
 import { CreateReviewDto } from 'src/reviews/dto/CreateReviewDto'
 import { UpdateReviewDto } from 'src/reviews/dto/UpdateReviewDto'
 import { ReviewsService } from 'src/reviews/services/reviews/reviews.service'
+import { Review as ReviewModel } from '@prisma/client'
 
 @Controller('reviews')
 export class ReviewsController {
   constructor(private reviewsService: ReviewsService) {}
 
   @Get('')
-  getReviews() {
+  getReviews(): Promise<ReviewModel[]> {
     return this.reviewsService.getReviews()
   }
 
   @Post('')
   @UsePipes(ValidationPipe)
-  createReview(@Body() createReviewDto: CreateReviewDto) {
+  createReview(@Body() createReviewDto: CreateReviewDto): Promise<ReviewModel> {
     return this.reviewsService.createReview(createReviewDto)
   }
 
@@ -33,7 +34,7 @@ export class ReviewsController {
   updateReview(
     @Param('id') id: string,
     @Body() updateReviewDto: UpdateReviewDto,
-  ) {
+  ): Promise<ReviewModel> {
     return this.reviewsService.updateReview({
       where: { ulid: id },
       data: updateReviewDto,
@@ -41,7 +42,7 @@ export class ReviewsController {
   }
 
   @Delete(':id')
-  deleteReview(@Param('id') id: string) {
+  deleteReview(@Param('id') id: string): Promise<ReviewModel> {
     return this.reviewsService.deleteReview({ ulid: id })
   }
 }

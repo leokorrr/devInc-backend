@@ -12,19 +12,21 @@ import {
 import { CreateProjectDto } from 'src/projects/dto/CreateProjectDto'
 import { UpdateProjectDto } from 'src/projects/dto/UpdateProjectDto'
 import { ProjectsService } from 'src/projects/services/projects/projects.service'
-
+import { Project as ProjectModel } from '@prisma/client'
 @Controller('projects')
 export class ProjectsController {
   constructor(private projectsService: ProjectsService) {}
 
   @Get('')
-  getProjects() {
+  getProjects(): Promise<ProjectModel[]> {
     return this.projectsService.getProjects()
   }
 
   @Post('')
   @UsePipes(ValidationPipe)
-  createProject(@Body() createProjectDto: CreateProjectDto) {
+  createProject(
+    @Body() createProjectDto: CreateProjectDto,
+  ): Promise<ProjectModel> {
     return this.projectsService.createProject(createProjectDto)
   }
 
@@ -33,7 +35,7 @@ export class ProjectsController {
   updateProject(
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
-  ) {
+  ): Promise<ProjectModel> {
     return this.projectsService.updateProject({
       where: { ulid: id },
       data: updateProjectDto,
@@ -41,7 +43,7 @@ export class ProjectsController {
   }
 
   @Delete(':id')
-  deleteProject(@Param('id') id: string) {
+  deleteProject(@Param('id') id: string): Promise<ProjectModel> {
     return this.projectsService.deleteProject({
       ulid: id,
     })

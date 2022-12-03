@@ -12,19 +12,21 @@ import {
 import { CreateContactInfoDto } from 'src/contact-info/dto/CreateContactInfoDto'
 import { UpdateContactInfoDto } from 'src/contact-info/dto/UpdateContactInfoDto'
 import { ContactInfoService } from 'src/contact-info/services/contact-info/contact-info.service'
-
+import { ContactInfo as ContactInfoModel } from '@prisma/client'
 @Controller('contact-info')
 export class ContactInfoController {
   constructor(private contactInfoService: ContactInfoService) {}
 
   @Get('')
-  getContactInfo() {
+  getContactInfo(): Promise<ContactInfoModel[]> {
     return this.contactInfoService.getContactInfo()
   }
 
   @Post('')
   @UsePipes(ValidationPipe)
-  createContactInfo(@Body() createContactInfoDto: CreateContactInfoDto) {
+  createContactInfo(
+    @Body() createContactInfoDto: CreateContactInfoDto,
+  ): Promise<ContactInfoModel> {
     return this.contactInfoService.createContactInfo(createContactInfoDto)
   }
 
@@ -34,7 +36,7 @@ export class ContactInfoController {
   updateContactInfo(
     @Param('id') id: string,
     @Body() updateContactInfoDto: UpdateContactInfoDto,
-  ) {
+  ): Promise<ContactInfoModel> {
     return this.contactInfoService.updateContactInfo({
       where: { ulid: id },
       data: updateContactInfoDto,
@@ -42,7 +44,7 @@ export class ContactInfoController {
   }
 
   @Delete(':id')
-  deleteContactInfo(@Param('id') id: string) {
+  deleteContactInfo(@Param('id') id: string): Promise<ContactInfoModel> {
     return this.contactInfoService.deleteContactInfo({ ulid: id })
   }
 }

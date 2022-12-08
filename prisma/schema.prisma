@@ -48,7 +48,6 @@ model SocialLink {
   ulid      String   @unique
   link      String   @unique
   title     String   @unique
-  imageUrl  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

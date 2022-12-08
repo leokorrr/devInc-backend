@@ -13,8 +13,4 @@ export class CreateSocialLinkDto {
   @IsNotEmpty()
   @Matches(URL_REGEX)
   link: string
-
-  @IsNotEmpty()
-  @Matches(URL_REGEX)
-  imageUrl: string
 }

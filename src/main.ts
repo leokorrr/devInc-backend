@@ -6,7 +6,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api')
   // TODO: CORS fix
   app.enableCors({
-    origin: '*',
+    origin: ['https://dev-inc-landing.vercel.app', 'http://localhost:3003'],
     allowedHeaders: 'Content-Type, Access-Control-Allow-Headers, Authorization',
   })
   await app.listen(5001)

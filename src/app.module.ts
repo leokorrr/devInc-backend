@@ -5,9 +5,11 @@ import { ProjectsModule } from './projects/projects.module'
 import { ReviewsModule } from './reviews/reviews.module'
 import { ContactInfoModule } from './contact-info/contact-info.module'
 import { SocialLinksModule } from './social-links/social-links.module'
+import { ConfigModule } from '@nestjs/config'
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     ProjectsModule,
     ReviewsModule,
     ContactInfoModule,

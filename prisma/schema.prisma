@@ -9,7 +9,7 @@ generator client {
 // TODO: add .env variables
 datasource db {
   provider = "postgresql"
-  url      = "postgres://postgres:12345@localhost:5432/devinc_landing_db"
+  url      = env("DATABASE_URL")
 }
 
 model Project {

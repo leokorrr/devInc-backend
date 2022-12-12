@@ -1,5 +1,5 @@
 import { IsNotEmpty, Matches, MinLength } from 'class-validator'
-import { ULID_REGEX, URL_REGEX } from 'src/utils/constants'
+import { ULID_REGEX, URL_REGEX } from '../../utils/constants'
 
 export class CreateSocialLinkDto {
   @IsNotEmpty()

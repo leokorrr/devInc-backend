@@ -1,5 +1,5 @@
 import { IsNotEmpty, Matches } from 'class-validator'
-import { URL_REGEX } from 'src/utils/constants'
+import { URL_REGEX } from '../../utils/constants'
 
 export class UpdateReviewDto {
   @IsNotEmpty()

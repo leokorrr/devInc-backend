@@ -1,5 +1,5 @@
 import { IsNotEmpty, Matches } from 'class-validator'
-import { EMAIL_REGEX, ULID_REGEX } from 'src/utils/constants'
+import { EMAIL_REGEX, ULID_REGEX } from '../../utils/constants'
 
 export class CreateContactInfoDto {
   @IsNotEmpty()

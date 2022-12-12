@@ -9,10 +9,10 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { CreateSocialLinkDto } from 'src/social-links/dto/CreateSocialLinkDto'
-import { UpdateSocialLinkDto } from 'src/social-links/dto/UpdateSocialLinkDto'
+import { CreateSocialLinkDto } from '../../dto/CreateSocialLinkDto'
+import { UpdateSocialLinkDto } from '../../dto/UpdateSocialLinkDto'
 
-import { SocialLinksService } from 'src/social-links/services/social-links/social-links.service'
+import { SocialLinksService } from '../../services/social-links/social-links.service'
 import { SocialLink as SocialLinkModel } from '@prisma/client'
 
 @Controller('social-links')

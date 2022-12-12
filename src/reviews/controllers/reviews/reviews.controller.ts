@@ -9,9 +9,9 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { CreateReviewDto } from 'src/reviews/dto/CreateReviewDto'
-import { UpdateReviewDto } from 'src/reviews/dto/UpdateReviewDto'
-import { ReviewsService } from 'src/reviews/services/reviews/reviews.service'
+import { CreateReviewDto } from '../../dto/CreateReviewDto'
+import { UpdateReviewDto } from '../../dto/UpdateReviewDto'
+import { ReviewsService } from '../../services/reviews/reviews.service'
 import { Review as ReviewModel } from '@prisma/client'
 
 @Controller('reviews')

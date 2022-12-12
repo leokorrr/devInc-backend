@@ -9,9 +9,9 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
-import { CreateContactInfoDto } from 'src/contact-info/dto/CreateContactInfoDto'
-import { UpdateContactInfoDto } from 'src/contact-info/dto/UpdateContactInfoDto'
-import { ContactInfoService } from 'src/contact-info/services/contact-info/contact-info.service'
+import { CreateContactInfoDto } from '../../dto/CreateContactInfoDto'
+import { UpdateContactInfoDto } from '../../dto/UpdateContactInfoDto'
+import { ContactInfoService } from '../../services/contact-info/contact-info.service'
 import { ContactInfo as ContactInfoModel } from '@prisma/client'
 @Controller('contact-info')
 export class ContactInfoController {

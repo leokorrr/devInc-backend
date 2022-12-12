@@ -1,5 +1,5 @@
 import { IsNotEmpty, Matches } from 'class-validator'
-import { EMAIL_REGEX } from 'src/utils/constants'
+import { EMAIL_REGEX } from '../../utils/constants'
 
 export class UpdateContactInfoDto {
   @IsNotEmpty()

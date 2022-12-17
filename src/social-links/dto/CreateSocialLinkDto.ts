@@ -1,11 +1,7 @@
 import { IsNotEmpty, Matches, MinLength } from 'class-validator'
-import { ULID_REGEX, URL_REGEX } from '../../utils/constants'
+import { URL_REGEX } from '../../utils/constants'
 
 export class CreateSocialLinkDto {
-  @IsNotEmpty()
-  @Matches(ULID_REGEX)
-  ulid: string
-
   @IsNotEmpty()
   @MinLength(3)
   title: string

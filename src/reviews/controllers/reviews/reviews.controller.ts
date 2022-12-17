@@ -13,6 +13,7 @@ import { CreateReviewDto } from '../../dto/CreateReviewDto'
 import { UpdateReviewDto } from '../../dto/UpdateReviewDto'
 import { ReviewsService } from '../../services/reviews/reviews.service'
 import { Review as ReviewModel } from '@prisma/client'
+import { ulid } from 'ulid'
 
 @Controller('reviews')
 export class ReviewsController {
@@ -26,7 +27,10 @@ export class ReviewsController {
   @Post('')
   @UsePipes(ValidationPipe)
   createReview(@Body() createReviewDto: CreateReviewDto): Promise<ReviewModel> {
-    return this.reviewsService.createReview(createReviewDto)
+    return this.reviewsService.createReview({
+      ulid: ulid(),
+      ...createReviewDto,
+    })
   }
 
   @Put(':id')

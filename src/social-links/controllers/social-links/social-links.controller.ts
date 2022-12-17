@@ -14,6 +14,7 @@ import { UpdateSocialLinkDto } from '../../dto/UpdateSocialLinkDto'
 
 import { SocialLinksService } from '../../services/social-links/social-links.service'
 import { SocialLink as SocialLinkModel } from '@prisma/client'
+import { ulid } from 'ulid'
 
 @Controller('social-links')
 export class SocialLinksController {
@@ -30,7 +31,10 @@ export class SocialLinksController {
   createSocialLink(
     @Body() createSocialLinkDto: CreateSocialLinkDto,
   ): Promise<SocialLinkModel> {
-    return this.socialLinksService.createSocialLink(createSocialLinkDto)
+    return this.socialLinksService.createSocialLink({
+      ulid: ulid(),
+      ...createSocialLinkDto,
+    })
   }
 
   @Put(':id')

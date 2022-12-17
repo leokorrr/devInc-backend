@@ -8,7 +8,7 @@ export class CreateReviewDto {
   @IsNotEmpty()
   author: string
 
-  // @TODO: check for null value
+  // @TODO: check for null value?
   // @Matches(new RegExp(`${URL_REGEX}|^$`))
   link: string
 

@@ -13,6 +13,7 @@ import { CreateContactInfoDto } from 'src/contact-info/dto/CreateContactInfoDto'
 import { UpdateContactInfoDto } from 'src/contact-info/dto/UpdateContactInfoDto'
 import { ContactInfoService } from 'src/contact-info/services/contact-info/contact-info.service'
 import { ContactInfo as ContactInfoModel } from '@prisma/client'
+import { ulid } from 'ulid'
 @Controller('contact-info')
 export class ContactInfoController {
   constructor(private contactInfoService: ContactInfoService) {}
@@ -27,7 +28,10 @@ export class ContactInfoController {
   createContactInfo(
     @Body() createContactInfoDto: CreateContactInfoDto,
   ): Promise<ContactInfoModel> {
-    return this.contactInfoService.createContactInfo(createContactInfoDto)
+    return this.contactInfoService.createContactInfo({
+      ulid: ulid(),
+      ...createContactInfoDto,
+    })
   }
 
   // TODO: check if Put right decorator

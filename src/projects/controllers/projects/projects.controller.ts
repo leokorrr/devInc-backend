@@ -13,6 +13,7 @@ import { CreateProjectDto } from 'src/projects/dto/CreateProjectDto'
 import { UpdateProjectDto } from 'src/projects/dto/UpdateProjectDto'
 import { ProjectsService } from 'src/projects/services/projects/projects.service'
 import { Project as ProjectModel } from '@prisma/client'
+import { ulid } from 'ulid'
 @Controller('projects')
 export class ProjectsController {
   constructor(private projectsService: ProjectsService) {}
@@ -27,7 +28,10 @@ export class ProjectsController {
   createProject(
     @Body() createProjectDto: CreateProjectDto,
   ): Promise<ProjectModel> {
-    return this.projectsService.createProject(createProjectDto)
+    return this.projectsService.createProject({
+      ulid: ulid(),
+      ...createProjectDto,
+    })
   }
 
   // TODO: check if Put right decorator

@@ -8,6 +8,6 @@ async function bootstrap() {
     origin: ['https://dev-inc-landing.vercel.app', 'http://localhost:3003'],
     allowedHeaders: 'Content-Type, Access-Control-Allow-Headers, Authorization',
   })
-  await app.listen(5001)
+  await app.listen(process.env.PORT || 5001)
 }
 bootstrap()

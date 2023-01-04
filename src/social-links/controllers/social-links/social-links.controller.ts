@@ -27,7 +27,6 @@ export class SocialLinksController {
 
   @Post('')
   @UsePipes(ValidationPipe)
-  // TODO: ULID creation check
   createSocialLink(
     @Body() createSocialLinkDto: CreateSocialLinkDto,
   ): Promise<SocialLinkModel> {

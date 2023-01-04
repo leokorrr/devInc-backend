@@ -34,7 +34,6 @@ export class ProjectsController {
     })
   }
 
-  // TODO: check if Put right decorator
   @Put(':id')
   updateProject(
     @Param('id') id: string,

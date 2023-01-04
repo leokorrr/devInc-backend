@@ -34,7 +34,6 @@ export class ContactInfoController {
     })
   }
 
-  // TODO: check if Put right decorator
   @Put(':id')
   @UsePipes(ValidationPipe)
   updateContactInfo(

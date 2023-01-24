@@ -9,6 +9,7 @@ async function bootstrap() {
       'https://dev-inc-landing.vercel.app',
       'http://localhost:3003',
       'https://www.devincubator.net',
+      'https://staging.devincubator.net',
     ],
     allowedHeaders: 'Content-Type, Access-Control-Allow-Headers, Authorization',
   })
